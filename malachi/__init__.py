@@ -1,4 +1,4 @@
-# === this is Tarmica's own version of the win10toast_click module which unfortunately is no longer being maintained ===
+# === this is Tarmica's own version of the win10toast_click module because the original, unfortunately is no longer being maintained ===
 
  
 
@@ -83,9 +83,11 @@ class ToastNotifier(object):
         :param callback: callable to run on mouse click within notification window
         :return: callable
         """
-        def inner(*args, **kwargs):
-            kwargs.update({'callback': callback})
-            func(*args, **kwargs)
+        def inner(hwnd, msg, wparam, lparam, *args, **kwargs):
+            try:
+                func(hwnd, msg, wparam, lparam, callback=callback, *args, **kwargs)
+            except Exception as e:
+                logging.debug(f"ToastNotifier WNDPROC error: {e!r}")
             return 0
         return inner
 
@@ -191,5 +193,12 @@ class ToastNotifier(object):
         :lparam:
         """
         nid = (self.hwnd, 0)
-        Shell_NotifyIcon(NIM_DELETE, nid)
-        PostQuitMessage(0)
+        try:
+            Shell_NotifyIcon(NIM_DELETE, nid)
+        except Exception as exc:
+            logging.debug(f"on_destroy: could not delete icon: {exc!r}")
+        finally:
+            try:
+                PostQuitMessage(0)
+            except Exception:
+                pass
