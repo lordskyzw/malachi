@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="malachi",
-    version="1.0.0",
+    version="1.0.1",
     author="Tarmica Chiwara",
     author_email="tarimicac@gmail.com",
     description="A Python module for Windows 10 toast notifications",
@@ -11,8 +11,7 @@ setup(
     url="https://github.com/lordskyzw/malachi",
     packages=find_packages(),
     install_requires=[
-        "pywin32",
-        "pkg_resources"
+        "pywin32"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
