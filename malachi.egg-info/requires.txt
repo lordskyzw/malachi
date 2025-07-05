@@ -1,0 +1,2 @@
+pywin32
+pkg_resources
