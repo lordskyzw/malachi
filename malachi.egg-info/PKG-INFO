@@ -1,6 +1,6 @@
 Metadata-Version: 2.2
 Name: malachi
-Version: 1.0.0
+Version: 1.0.1
 Summary: A Python module for Windows 10 toast notifications
 Home-page: https://github.com/lordskyzw/malachi
 Author: Tarmica Chiwara
@@ -11,7 +11,6 @@ Classifier: Operating System :: Microsoft :: Windows
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 Requires-Dist: pywin32
-Requires-Dist: pkg_resources
 Dynamic: author
 Dynamic: author-email
 Dynamic: classifier
